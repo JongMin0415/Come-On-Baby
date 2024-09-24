@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Yut yut;
+    public YutController yutController;
 
-    void Start()
+    public void OnThrowButtonClick()
     {
-        yut = gameObject.AddComponent<Yut>();
+        Debug.Log("버튼이 클릭되었습니다."); // 디버그 메시지 추가
+        yutController.ThrowYut();
+        // 일정 시간 후에 윷의 결과를 확인
+        Invoke("CheckResult", 2f); // 2초 후 결과 체크
     }
 
-    public void OnRollButtonClicked()
+    void CheckResult()
     {
-        yut.Roll();
+        yutController.CheckYutResult(); // public 메서드 호출
     }
 }
